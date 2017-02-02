@@ -7,7 +7,7 @@ Destined to expand across your project.
 
 ## CLI Usage
 
-- `manifest [options]` - Run hash-brown using your options
+- `manifest [options]` - Run manifest using your options
 - `-f --files` - Set the files to be manifested
 - `-o --output` - Set the output path
 
