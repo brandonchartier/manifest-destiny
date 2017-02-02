@@ -12,6 +12,10 @@
   "keywords": [
     "manifest"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brandonchartier/manifest-destiny"
+  },
   "author": "Brandon Chartier",
   "license": "ISC",
   "dependencies": {
