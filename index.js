@@ -10,20 +10,15 @@ const opt = {
 	output: argv.output || argv.o
 };
 
-glob(opt.files).then(files => {
-	const map = files.map(file => {
-		const parsed = path.parse(file);
-
-		return {
-			name: parsed.name,
-			path: file
-		};
-	});
-
-	return fs.writeJson(opt.output, map.reduce((acc, x) => {
-		acc[x.name] = x.path;
+const parse = (files) => {
+	return files.map(path.parse).reduce((acc, x) => {
+		acc[x.name] = path.format(x);
 		return acc;
-	}, {}));
+	}, {});
+};
+
+glob(opt.files).then(files => {
+	return fs.writeJson(opt.output, parse(files));
 }).then(() => {
 	// OK
 }).catch(err => {

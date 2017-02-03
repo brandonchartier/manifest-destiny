@@ -1,6 +1,6 @@
 {
   "name": "manifest-destiny",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Destined to expand across your project",
   "main": "index.js",
   "bin": {
@@ -10,11 +10,12 @@
     "test": ""
   },
   "keywords": [
-    "manifest"
+    "manifest",
+    "json"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brandonchartier/manifest-destiny"
+    "url": "git+https://github.com/brandonchartier/manifest-destiny.git"
   },
   "author": "Brandon Chartier",
   "license": "ISC",
@@ -22,5 +23,9 @@
     "fs-promise": "^1.0.0",
     "globby": "^6.1.0",
     "minimist": "^1.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/brandonchartier/manifest-destiny/issues"
+  },
+  "homepage": "https://github.com/brandonchartier/manifest-destiny#readme"
 }
