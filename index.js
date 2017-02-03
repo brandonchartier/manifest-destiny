@@ -23,7 +23,7 @@ glob(opt.files).then(files => {
 	return fs.writeJson(opt.output, map.reduce((acc, x) => {
 		acc[x.name] = x.path;
 		return acc;
-	}));
+	}, {}));
 }).then(() => {
 	// OK
 }).catch(err => {
