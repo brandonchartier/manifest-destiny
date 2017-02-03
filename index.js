@@ -10,17 +10,17 @@ const opt = {
 	output: argv.output || argv.o
 };
 
-const parse = (files) => {
+const manifest = (files) => {
 	return files.map(path.parse).reduce((acc, x) => {
 		acc[x.name] = path.format(x);
 		return acc;
 	}, {});
 };
 
-glob(opt.files).then(files => {
-	return fs.writeJson(opt.output, parse(files));
-}).then(() => {
-	// OK
+fs.ensureDir(path.parse(opt.output).dir).then(() => {
+	return glob(opt.files);
+}).then(files => {
+	return fs.writeJson(opt.output, manifest(files));
 }).catch(err => {
 	console.error(err);
 });
