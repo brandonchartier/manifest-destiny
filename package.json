@@ -1,10 +1,10 @@
 {
   "name": "manifest-destiny",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Destined to expand across your project",
   "main": "index.js",
   "bin": {
-    "manifest": "./index"
+    "manifest": "./index.js"
   },
   "scripts": {
     "test": ""
