@@ -26,12 +26,10 @@ const build = ({ files = '', output = 'manifest.json' }) => {
 if (require.main === module) {
 	const argv = minimist(process.argv.slice(2));
 
-	const opt = {
+	return build({
 		files: argv.files || argv.f,
 		output: argv.output || argv.o
-	};
-
-	return build(opt);
+	});
 }
 
 module.exports = build;
