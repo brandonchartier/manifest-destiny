@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-const argv = require('minimist')(process.argv.slice(2));
-const path = require('path');
 const fs = require('fs-promise');
 const glob = require('globby');
+const minimist = require('minimist');
+const path = require('path');
+
+const argv = minimist(process.argv.slice(2));
 
 const opt = {
 	files: argv.files || argv.f,
@@ -18,14 +20,6 @@ const manifest = (xs) => {
 };
 
 const build = ({ files, output }) => {
-	if (!files) {
-		throw new Error('Please specify files');
-	}
-
-	if (!output) {
-		throw new Error('Please specify output');
-	}
-
 	return fs.ensureDir(path.parse(output).dir).then(() => {
 		return glob(files);
 	}).then(xs => {
@@ -36,10 +30,7 @@ const build = ({ files, output }) => {
 };
 
 if (require.main === module) {
-	build({
-		files: opt.files,
-		output: opt.output
-	});
+	return build(opt);
 }
 
 module.exports = build;
