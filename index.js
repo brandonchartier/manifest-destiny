@@ -5,13 +5,6 @@ const glob = require('globby');
 const minimist = require('minimist');
 const path = require('path');
 
-const argv = minimist(process.argv.slice(2));
-
-const opt = {
-	files: argv.files || argv.f,
-	output: argv.output || argv.o
-};
-
 const manifest = (xs) => {
 	return xs.map(path.parse).reduce((acc, x) => {
 		acc[x.name] = path.format(x);
@@ -19,7 +12,7 @@ const manifest = (xs) => {
 	}, {});
 };
 
-const build = ({ files, output }) => {
+const build = ({ files = '', output = 'manifest.json' }) => {
 	return fs.ensureDir(path.parse(output).dir).then(() => {
 		return glob(files);
 	}).then(xs => {
@@ -29,7 +22,15 @@ const build = ({ files, output }) => {
 	});
 };
 
+// Only for CLI usage
 if (require.main === module) {
+	const argv = minimist(process.argv.slice(2));
+
+	const opt = {
+		files: argv.files || argv.f,
+		output: argv.output || argv.o
+	};
+
 	return build(opt);
 }
 
