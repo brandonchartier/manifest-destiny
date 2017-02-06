@@ -8,8 +8,8 @@ Destined to expand across your project.
 ## CLI Usage
 
 - `manifest [options]` - Run manifest using your options
-- `-f --files` - Set the files to be manifested
-- `-o --output` - Set the output path
+- `-f --files` - Set the files to be manifested, defaults to ""
+- `-o --output` - Set the output path, defaults to "manifest.json"
 
 ## API Usage
 
@@ -27,4 +27,4 @@ manifest({
 ```
 
 ## Example
-`manifest --files="src/**/*.js" --output="out/manifest.json"`
+`manifest --files=src/**/*.js --output=out/manifest.json`
