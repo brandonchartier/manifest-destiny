@@ -11,5 +11,20 @@ Destined to expand across your project.
 - `-f --files` - Set the files to be manifested
 - `-o --output` - Set the output path
 
+## API Usage
+
+Manifest Destiny returns a Promise.
+
+```js
+const manifest = require('manifest-destiny');
+
+manifest({
+	files: '*.js',
+	output: 'manifest.json'
+}).then(() => {
+	// OK
+});
+```
+
 ## Example
 `manifest --files="src/**/*.js" --output="out/manifest.json"`

@@ -10,17 +10,36 @@ const opt = {
 	output: argv.output || argv.o
 };
 
-const manifest = (files) => {
-	return files.map(path.parse).reduce((acc, x) => {
+const manifest = (xs) => {
+	return xs.map(path.parse).reduce((acc, x) => {
 		acc[x.name] = path.format(x);
 		return acc;
 	}, {});
 };
 
-fs.ensureDir(path.parse(opt.output).dir).then(() => {
-	return glob(opt.files);
-}).then(files => {
-	return fs.writeJson(opt.output, manifest(files));
-}).catch(err => {
-	console.error(err);
-});
+const build = ({ files, output }) => {
+	if (!files) {
+		throw new Error('Please specify files');
+	}
+
+	if (!output) {
+		throw new Error('Please specify output');
+	}
+
+	return fs.ensureDir(path.parse(output).dir).then(() => {
+		return glob(files);
+	}).then(xs => {
+		return fs.writeJson(output, manifest(xs));
+	}).catch(err => {
+		throw new Error(err);
+	});
+};
+
+if (require.main === module) {
+	build({
+		files: opt.files,
+		output: opt.output
+	});
+}
+
+module.exports = build;
